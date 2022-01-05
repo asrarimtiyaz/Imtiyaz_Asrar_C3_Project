@@ -69,6 +69,19 @@ public class Restaurant {
     }
 
 
-        return totalPrice;
+    public int getTotalItemPrice(List<String> itemNames){
+        int totalPrice = 0;
+        for(String itemName:itemNames){
+            Item item = findItemByName(itemName);
+            if(item!=null){
+                String itemString = item.toString();
+                int first = itemString.indexOf(':');
+                int last = itemString.indexOf('\n');
+                String strPrice = itemString.substring(first+1,last);
+                System.out.println("String Price is"+strPrice);
+                int price = Integer.parseInt(strPrice);
+                totalPrice = totalPrice + price;
+            }
+        }return totalPrice;
     }
 }
