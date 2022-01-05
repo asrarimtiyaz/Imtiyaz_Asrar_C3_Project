@@ -71,6 +71,35 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
 
-
+    @Test
+    public void getting_total_item_price_as_correct_value(){
+        LocalTime openTime = LocalTime.now().minusHours(3);
+        LocalTime closeTime = LocalTime.now().plusHours(3);
+        restaurant = new Restaurant("Baba Dhaba","Delhi",openTime,closeTime);
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Sweet Chicken corn soup",219);
+        restaurant.addToMenu("Chicken lasagne", 369);
+        List <String> items = new ArrayList<String>();
+        items.add("Sweet corn soup");
+        items.add("Vegetable lasagne");
+        System.out.println("Doing");
+        assertEquals(388,restaurant.getTotalItemPrice(items));
+    }
+    @Test
+    public void getting_total_item_price_as_incorrect_value(){
+        LocalTime openTime = LocalTime.now().minusHours(3);
+        LocalTime closeTime = LocalTime.now().plusHours(3);
+        restaurant = new Restaurant("Baba Dhaba","Delhi",openTime,closeTime);
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Sweet Chicken corn soup",219);
+        restaurant.addToMenu("Chicken lasagne", 369);
+        List<String> items = new ArrayList<String>();
+        items.add("Sweet corn soup");
+        items.add("Vegetable lasagne");
+        System.out.println("Doing");
+        assertNotEquals(389,restaurant.getTotalItemPrice(items));
+    }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
